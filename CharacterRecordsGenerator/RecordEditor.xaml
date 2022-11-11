@@ -7,7 +7,7 @@
                       xmlns:system="clr-namespace:System;assembly=mscorlib"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       mc:Ignorable="d"
-                      Title="Character Records Generator" Height="697" Width="719.583"
+                      Title="Генератор записей персонажей" Height="697" Width="719.583"
                       ShowIconOnTitleBar="True"
                       ShowTitleBar="True"
                       Icon="CRG.ico"
@@ -33,13 +33,12 @@
         </Grid.ColumnDefinitions>
         <controls:MetroAnimatedTabControl Margin="10,10,0,45" controls:TabControlHelper.IsUnderlined="True" Grid.ColumnSpan="2">
             <!-- General Character Information -->
-            <TabItem Header="General">
+            <TabItem Header="Общее">
                 <ScrollViewer>
                     <StackPanel>
                         <TextBlock Margin="10,10,10,10"
-                                       Text="- Bold fields with a * are required. Otherwise, if you leave a box blank, it'll just leave that field off the final result.&#x0a;- Hover over the fields for tooltips! Or look at the default watermark value for an idea about what to write."
-                                       VerticalAlignment="Top" FontWeight="SemiBold"/>
-                        <GroupBox Header="Basic Information" controls:ControlsHelper.ContentCharacterCasing="Normal"
+                                       VerticalAlignment="Top" FontWeight="SemiBold"><Run Text="- "/><Run Language="ru-ru" Text="Жирные поля с «"/><Run Text="*"/><Run Language="ru-ru" Text="» необходимы"/><Run Text=". "/><Run Language="ru-ru" Text="Е"/><Run Text="сли оставите поле пустым, "/><Run Language="ru-ru" Text="оно"/><Run Text=" не будет включено в окончательный результат."/><LineBreak/><Run Text="- Наведите курсор на поля для всплывающих подсказок! Или посмотрите на"/><Run Language="ru-ru" Text=" вотермарку"/><Run Text=", чтобы понять, что писать."/></TextBlock>
+                        <GroupBox Header="Основная информация" controls:ControlsHelper.ContentCharacterCasing="Normal"
                                   Height="200">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -50,96 +49,94 @@
                                 <TextBox Height="26"
                                          Margin="10,26,5,0"
                                          TextWrapping="Wrap" VerticalAlignment="Top"
-                                         ToolTip="Your character's first name. Required."
-                                         Text="{Binding Path=FirstName}" controls:TextBoxHelper.Watermark="John" TabIndex="1" />
+                                         ToolTip="Имя вашего персонажа. Необходимо."
+                                         Text="{Binding Path=FirstName}" controls:TextBoxHelper.Watermark="Иван" TabIndex="1" />
                                 <TextBox Height="26"
                                          Margin="0,26,0,0"
                                          TextWrapping="Wrap"
-                                         ToolTip="Your character's middle name." Grid.Column="1"
+                                         ToolTip="Отчество вашего персонажа." Grid.Column="1"
                                          HorizontalAlignment="Left" Width="120" VerticalAlignment="Top"
                                          Text="{Binding Path=MiddleName}" TabIndex="2" />
                                 <TextBox Height="26"
                                          Margin="125,26,0,0"
                                          TextWrapping="Wrap" VerticalAlignment="Top"
-                                         ToolTip="Your character's last name. Required." Grid.Column="1"
-                                         Text="{Binding Path=LastName}" controls:TextBoxHelper.Watermark="Doe" TabIndex="3" />
+                                         ToolTip="Фамилия вашего персонажа. Необходимо." Grid.Column="1"
+                                         Text="{Binding Path=LastName}" controls:TextBoxHelper.Watermark="Иванов" TabIndex="3" />
                                 <TextBlock Grid.Column="0" Margin="10,10,10,0" TextWrapping="Wrap"
-                                           Text="First*" FontWeight="DemiBold"
-                                           VerticalAlignment="Top" Height="16" />
+                                           FontWeight="DemiBold"
+                                           VerticalAlignment="Top" Height="16" ><Run Language="ru-ru" Text="Имя"/><Run Text="*"/></TextBlock>
                                 <TextBlock HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap"
-                                           Text="Middle" VerticalAlignment="Top" Grid.Column="1"
-                                           Height="15.96" Width="120"/>
+                                           VerticalAlignment="Top" Grid.Column="1"
+                                           Height="15.96" Width="120"><Run Language="ru-ru" Text="О"/><Run Text="тчество"/></TextBlock>
                                 <TextBlock Margin="125,10,10,0" TextWrapping="Wrap"
-                                           Text="Last"
-                                           VerticalAlignment="Top" Grid.Column="1" Height="15.96"/>
+                                           VerticalAlignment="Top" Grid.Column="1" Height="15.96"><Run Language="ru-ru" Text="Фамилия"/></TextBlock>
                                 <TextBox Height="26"
                                          Margin="5,26,10.5,0" TextWrapping="Wrap"
-                                         ToolTip="Your character's citizenship." Grid.Column="2"
+                                         ToolTip="Гражданство вашего персонажа." Grid.Column="2"
                                          VerticalAlignment="Top"
                                          Text="{Binding Path=Citizenship}"
-                                         controls:TextBoxHelper.Watermark="Coalition of Colonies" TabIndex="4" />
+                                         controls:TextBoxHelper.Watermark="Коалиция Колоний" TabIndex="4" />
                                 <TextBlock HorizontalAlignment="Left" Margin="5,10,0,0" TextWrapping="Wrap"
-                                           Text="Citizenship" VerticalAlignment="Top" Grid.Column="2"
+                                           Text="Гражданство" VerticalAlignment="Top" Grid.Column="2"
                                            Height="15.96" Width="150" />
                                 <TextBlock Grid.Column="0" Margin="10,57,10,0" TextWrapping="Wrap"
-                                           Text="Species*" FontWeight="DemiBold"
-                                           VerticalAlignment="Top" Height="15.96"/>
+                                           FontWeight="DemiBold"
+                                           VerticalAlignment="Top" Height="15.96"><Run Language="ru-ru" Text="Раса"/><Run Text="*"/></TextBlock>
                                 <ComboBox Grid.Column="0" x:Name="SpeciesCombo" Margin="10,73,5,0"
                                           VerticalAlignment="Top"
                                           ItemsSource="{Binding Source={StaticResource SpeciesEnum}}"
-                                          ToolTip="Your character's species."
+                                          ToolTip="Раса вашего персонажа."
                                           SelectionChanged="SpeciesSelectChanged" Height="26" TabIndex="5"/>
                                 <TextBlock HorizontalAlignment="Left" Margin="0,57,0,0" TextWrapping="Wrap"
-                                           Text="Pronouns"
-                                           VerticalAlignment="Top" Grid.Column="1" Height="15.96" Width="120"/>
+                                           VerticalAlignment="Top" Grid.Column="1" Height="15.96" Width="120"><Run Language="ru-ru" Text="Местоимение"/></TextBlock>
                                 <TextBox HorizontalAlignment="Left" Margin="0,73,0,0"
                                          VerticalAlignment="Top" Width="120"
-                                         ToolTip="Your character's preferred pronouns."
+                                         ToolTip="Предпочтительные местоимения вашего персонажа."
                                          Text="{Binding Path=Pronouns}"
-                                         controls:TextBoxHelper.Watermark="He/Him"
+                                         controls:TextBoxHelper.Watermark="Он/Его"
                                          Grid.Column="1" Height="26" TabIndex="6"/>
                                 <DatePicker Margin="125,73,0,0" VerticalAlignment="Top"
                                             SelectedDateFormat="Short" DisplayDateEnd="2470-01-01"
                                             DisplayDateStart="1955-01-01" DisplayDate="2464-01-01" Grid.Column="1"
                                             Height="26"
                                             SelectedDate="{Binding Path=BirthDate}" TabIndex="7" />
-                                <TextBlock Margin="125,57,40.96,0" TextWrapping="Wrap" Text="Date of Birth*" FontWeight="DemiBold"
-                                           VerticalAlignment="Top" Grid.Column="1" Height="15.96" />
-                                <TextBlock Grid.Column="1" Margin="0,0,0,45" TextWrapping="Wrap" Text="Next of Kin"
+                                <TextBlock Margin="125,57,40.96,0" TextWrapping="Wrap" FontWeight="DemiBold"
+                                           VerticalAlignment="Top" Grid.Column="1" Height="15.96" ><Run Language="ru-ru" Text="Дата рождения"/><Run Text="*"/></TextBlock>
+                                <TextBlock Grid.Column="1" Margin="0,0,0,45" TextWrapping="Wrap" Text="Ближайшие родственники"
                                            VerticalAlignment="Bottom" HorizontalAlignment="Left" />
                                 <TextBox Height="23" Margin="0,0,0,19" TextWrapping="Wrap"
                                          VerticalAlignment="Bottom" Grid.ColumnSpan="1"
                                          Grid.Column="1"
-                                         controls:TextBoxHelper.Watermark="e.g. Jane Doe (mother)"
-                                         Text="{Binding Path=NextOfKin}" TabIndex="10" />
+                                         controls:TextBoxHelper.Watermark="например, Елена Иванова (мать)"
+                                         Text="{Binding Path=NextOfKin}" TabIndex="10" ToolTip="Ближайшие родственники вашего персонажа." />
                                 <TextBlock HorizontalAlignment="Left" Margin="5,0,0,45"
-                                           TextWrapping="Wrap" Text="Employed As" VerticalAlignment="Bottom" Grid.Column="2" />
+                                           TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Column="2" ><Run Language="ru-ru" Text="Должность"/></TextBlock>
                                 <TextBox Height="23" Margin="5,0,10,19" TextWrapping="Wrap"
-                                         VerticalAlignment="Bottom" controls:TextBoxHelper.Watermark="Assistant"
-                                         Text="{Binding Path=EmployedAs}" Grid.Column="2" TabIndex="11" />
+                                         VerticalAlignment="Bottom" controls:TextBoxHelper.Watermark="Ассистент"
+                                         Text="{Binding Path=EmployedAs}" Grid.Column="2" TabIndex="11" ToolTip="Должность, на которую был нанят ваш персонаж." />
                                 <TextBox Grid.Column="2" Height="23" Margin="5,73,10.5,0"
-                                         TextWrapping="Wrap" VerticalAlignment="Top" controls:TextBoxHelper.Watermark="Tau Ceti Basic, Tradeband"
-                                         Text="{Binding Path=SpokenLanguages}" TabIndex="8" />
-                                <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="5,57,0,0" TextWrapping="Wrap" Text="Spoken Languages" VerticalAlignment="Top" />
+                                         TextWrapping="Wrap" VerticalAlignment="Top" controls:TextBoxHelper.Watermark="Tau Ceti Basic, Торговая группа"
+                                         Text="{Binding Path=SpokenLanguages}" TabIndex="8" ToolTip="Разговорные языки вашего персонажа." />
+                                <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="5,57,0,0" TextWrapping="Wrap" Text="Разговорные языки" VerticalAlignment="Top" />
                                 <ComboBox Grid.Column="0" x:Name="SubSpeciesCombo" Margin="10,120,5,0"
                                     VerticalAlignment="Top"
-                                    ToolTip="Your character's ethnic group or subtype."
+                                    ToolTip="Этническая группа или подтип вашего персонажа."
                                     SelectionChanged="SpeciesSelectChanged" Height="26" TabIndex="9"
     />
                                 <TextBlock Grid.Column="0" Margin="10,104,10,0" TextWrapping="Wrap"
-                                    Text="Subtype/Ethnicity"
+                                    Text="Подтип/Этнос"
                                     VerticalAlignment="Top" Height="16"
     />
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Appearance" controls:ControlsHelper.ContentCharacterCasing="Normal">
+                        <GroupBox Header="Внешность" controls:ControlsHelper.ContentCharacterCasing="Normal">
                             <Grid Height="125">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="550" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap"
-                                           VerticalAlignment="Top" Text="Height (cm)" />
+                                           VerticalAlignment="Top" ><Run Language="ru-ru" Text="В"/><Run Text="ысота (см)"/></TextBlock>
                                 <controls:NumericUpDown Grid.Column="0"
                                                         Value="{Binding Path=CharHeight}" controls:TextBoxHelper.Watermark="170.0"
                                                         HorizontalAlignment="Left" Margin="10,26,0,0"
@@ -154,41 +151,40 @@
                                                         HorizontalContentAlignment="Center" TabIndex="13" />
                                 <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="77.033,10,0,0"
                                            TextWrapping="Wrap"
-                                           VerticalAlignment="Top" Text="Weight (kg)" />
+                                           VerticalAlignment="Top" Text="Вес (кг)" />
                                 <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="144.033,10,0,0"
                                            TextWrapping="Wrap"
-                                           Text="Skin/Body Color" VerticalAlignment="Top" />
+                                           Text="Цвет кожи/тела" VerticalAlignment="Top" />
                                 <TextBox Grid.Column="0" Height="23"
                                          Margin="144.033,25.96,261.967,0" TextWrapping="Wrap" VerticalAlignment="Top"
-                                         ToolTip="The color of your character's skin/scales/fur/chassis."
+                                         ToolTip="Цвет кожи/чешуи/меха/шасси вашего персонажа."
                                          controls:TextBoxHelper.Watermark="Brown"
                                          d:LayoutOverrides="HorizontalAlignment" Text="{Binding Path=SkinColor}" TabIndex="14" />
                                 <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="10,57,0,52"
                                            TextWrapping="Wrap"
-                                           Text="Distinguishing Features" d:LayoutOverrides="Height" />
+                                           Text="Особые приметы" d:LayoutOverrides="Height" />
                                 <TextBox Grid.Column="0" Height="23"
                                          Margin="10,0,0,26" Text="{Binding Path=DistinguishingFeatures}"
-                                         controls:TextBoxHelper.Watermark="A full sleeve on their right arm; mechanical eyes."
+                                         controls:TextBoxHelper.Watermark="Полный рукав на правой руке; механические глаза."
                                          TextWrapping="Wrap" VerticalAlignment="Bottom" TabIndex="17" />
                                 <TextBox Grid.Column="0" Height="23"
                                          Margin="0,25.96,136.967,0"
                                          TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right"
                                          Width="120" d:LayoutOverrides="HorizontalAlignment"
                                          Text="{Binding Path=HairColor}" TabIndex="15" />
-                                <TextBlock Grid.Column="0" Margin="0,10,203.403,0" TextWrapping="Wrap"
-                                           Text="Hair Color"
-                                           VerticalAlignment="Top" HorizontalAlignment="Right"
-                                           d:LayoutOverrides="HorizontalAlignment" />
+                                <TextBlock Grid.Column="0" Margin="0,10,195,0" TextWrapping="Wrap"
+                                           Text="Цвет волос"
+                                           VerticalAlignment="Top" HorizontalAlignment="Right" />
                                 <TextBox Grid.Column="0" HorizontalAlignment="Right"
                                          Margin="0,25.96,0,0"
                                          TextWrapping="Wrap" Width="131.967" Height="26" VerticalAlignment="Top"
                                          Text="{Binding Path=EyeColor}" TabIndex="16" />
-                                <TextBlock Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,81.957,0"
+                                <TextBlock Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,80,0"
                                            TextWrapping="Wrap"
-                                           Text="Eye Color" VerticalAlignment="Top" />
+                                           Text="Цвет глаз" VerticalAlignment="Top" />
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Additional Information" controls:ControlsHelper.ContentCharacterCasing="Normal"
+                        <GroupBox Header="Дополнительная информация" controls:ControlsHelper.ContentCharacterCasing="Normal"
                                   Height="150">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -205,9 +201,9 @@
                                          AcceptsReturn="True"
                                          TextWrapping="Wrap"
                                          VerticalScrollBarVisibility="Auto"
-                                         controls:TextBoxHelper.Watermark="Any additional notes that should be present on all three records.&#x0a;&#x0a;e.g.&#x0a;John Doe is here for a two-month cultural exchange.&#x0a;John Doe has been known to [...]."
+                                         controls:TextBoxHelper.Watermark="Любые дополнительные примечания, которые должны присутствовать на всех трёх записях. &#x0a;&#x0a;Например,&#x0a;Иван Иванов прибыл сюда для двухмесячного культурного обмена. &#x0a;Известно, что Иван Иванов [...]."
                                          controls:TextBoxHelper.IsSpellCheckContextMenuEnabled="True"
-                                         ToolTip="Additional public notes that will be visible on all three records."
+                                         ToolTip="Дополнительные общедоступные заметки, которые будут видны во всех трёх записях."
                                          Text="{Binding Path=PublicNotes}"
                                          d:LayoutOverrides="VerticalAlignment"/>
                             </Grid>
@@ -216,7 +212,7 @@
                 </ScrollViewer>
             </TabItem>
             <!-- Employment Information -->
-            <TabItem Header="Employment">
+            <TabItem Header="Работа">
                 <ScrollViewer>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -261,7 +257,7 @@
                 </ScrollViewer>
             </TabItem>
             <!-- Medical Information -->
-            <TabItem Header="Medical">
+            <TabItem Header="Медицина">
                 <ScrollViewer>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -383,7 +379,7 @@
                 </ScrollViewer>
             </TabItem>
             <!-- Security Information -->
-            <TabItem Header="Security">
+            <TabItem Header="Безопасность">
                 <ScrollViewer>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -443,15 +439,15 @@
         </controls:MetroAnimatedTabControl>
         <!-- Footer -->
         <Grid Height="45" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
-            <Button Content="Open" HorizontalAlignment="Left" Margin="10,9.66,0,10" Width="75"
+            <Button Content="Открыть" HorizontalAlignment="Left" Margin="10,9.66,0,10" Width="75"
                     d:LayoutOverrides="Height" Click="OpenContent" />
-            <Button Content="Save" HorizontalAlignment="Left" Margin="90,10,0,9.66" Width="75"
+            <Button Content="Сохранить" HorizontalAlignment="Left" Margin="90,10,0,9.66" Width="75"
                     d:LayoutOverrides="Height" Click="SaveContent" />
-            <Button Content="Save As" HorizontalAlignment="Left" Margin="170,10,0,9.66"
+            <Button Content="Сохранить как…" HorizontalAlignment="Left" Margin="170,10,0,9.66"
                     Width="75" d:LayoutOverrides="Height" Click="SaveContentAs" />
-            <Button Content="Generate" HorizontalAlignment="Right" Margin="0,10.3,10,9.66"
-                    Width="75" d:LayoutOverrides="Height" Click="GenerateRecord" />
-            <Label x:Name="VersionLabel" Content="Version" HorizontalAlignment="Left" Margin="250,9,0,0" VerticalAlignment="Top" Foreground="Gray"/>
+            <Button Content="Сгенерировать" HorizontalAlignment="Left" Margin="600,10,0,10"
+                    Width="110" Click="GenerateRecord" />
+            <Label x:Name="VersionLabel" Content="Версия" HorizontalAlignment="Left" Margin="250,9,0,0" VerticalAlignment="Top" Foreground="Gray"/>
         </Grid>
     </Grid>
 </controls:MetroWindow>
